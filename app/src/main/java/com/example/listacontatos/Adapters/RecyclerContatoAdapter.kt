@@ -13,6 +13,7 @@ import androidx.room.Room
 import com.example.listacontatos.Data.BEAN.NotesBean
 import com.example.listacontatos.Data.DBAcess.DBAcess
 import com.example.listacontatos.R
+import com.example.listacontatos.Screens.MainActivity
 import com.example.listacontatos.Screens.NoteOpen
 
 class RecyclerContatoAdapter(private val dados: MutableList<NotesBean>) :

@@ -36,15 +36,24 @@ class NoteOpen : AppCompatActivity() {
             "notesDB"
         ).allowMainThreadQueries().build()
         val userDao = db.userDao()
-
+        val uid = intent?.getStringExtra("uid")?.toLong()
 
         /**métodos da CRUD**/
         binding.saveNota.setOnClickListener {
-            SaveNote(
-                binding.titleNote.text.toString(),
-                binding.areaNota.text.toString(),
-                userDao
-            )
+            if (verificarDados()) {
+                Update(
+                    binding.titleNote.text.toString(),
+                    binding.areaNota.text.toString(),
+                    uid!!,
+                    userDao
+                )
+            } else {
+                SaveNote(
+                    binding.titleNote.text.toString(),
+                    binding.areaNota.text.toString(),
+                    userDao
+                )
+            }
             onBackPressed()
         }
         //Resgatando a UID enviada pelo Adapter do RecyclerView
@@ -79,5 +88,9 @@ class NoteOpen : AppCompatActivity() {
 
     private fun verificarDados(): Boolean {
         return intent.getStringExtra("uid") != null
+    }
+
+    private fun Update(title: String, text: String, uid: Long, bd: userDAO) {
+        bd.update(title, text, uid)
     }
 }

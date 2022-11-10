@@ -24,6 +24,6 @@ interface userDAO {
     @Delete
     fun delete(user: NotesBean)
 
-    @Update
-    fun update(user: NotesBean)
+    @Query("UPDATE notes SET title = :title, text = :text WHERE uid LIKE :uid")
+    fun update(title: String, text: String, uid: Long)
 }

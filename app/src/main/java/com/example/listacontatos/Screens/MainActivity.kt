@@ -56,9 +56,4 @@ class MainActivity : AppCompatActivity() {
         return db.getAll()
     }
 
-    override fun onResume() {
-        super.onResume()
-        listaDados = listaDados(acessoDB()) as MutableList<NotesBean>
-
-    }
 }
